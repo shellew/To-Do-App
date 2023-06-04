@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>タスクの編集</title>
+</head>
+<body>
+    <h1>タスクの編集</h1>
+
+    <form action="/edit/{{ task_id }}" method="POST">
+        <label for="status">ステータス:</label>
+        <select name="status">
+            <option value="未着手" {% if task['status'] == '未着手' %}selected{% endif %}>未着手</option>
+            <option value="進行中" {% if task['status'] == '進行中' %}selected{% endif %}>進行中</option>
+            <option value="完了" {% if task['status'] == '完了' %}selected{% endif %}>完了</option>
+        </select><br>
+        <button type="submit">更新</button>
+    </form>
+</body>
+</html>
