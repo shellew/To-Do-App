@@ -29,7 +29,7 @@ def edit(task_id):
         tasks[task_id]['status'] = new_status
         return redirect('/')
     else:
-        return render_template('edit.html', task=tasks[task_id])
+        return render_template('edit.html', task=tasks[task_id], task_id=task_id)
 
 @app.route('/delete/<int:task_id>', methods=['POST'])
 def delete(task_id):
