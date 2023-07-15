@@ -9,9 +9,14 @@
     <form action="/edit/{{ task_id }}" method="POST">
         <label for="status">ステータス:</label>
         <select name="status">
-            <option value="未着手" {% if task['status'] == '未着手' %}selected{% endif %}>未着手</option>
-            <option value="進行中" {% if task['status'] == '進行中' %}selected{% endif %}>進行中</option>
-            <option value="完了" {% if task['status'] == '完了' %}selected{% endif %}>完了</option>
+            <option value="未着手" {% if task.status == '未着手' %}selected{% endif %}>未着手</option>
+            <option value="進行中" {% if task.status == '進行中' %}selected{% endif %}>進行中</option>
+            <option value="完了" {% if task.status == '完了' %}selected{% endif %}>完了</option>
+        </select><br>
+        <select name="priority">
+            <option value="低" {% if task.priority == '低' %}selected{% endif %}>低</option>
+            <option value="中" {% if task.priority == '中' %}selected{% endif %}>中</option>
+            <option value="高" {% if task.priority == '高' %}selected{% endif %}>高</option>
         </select><br>
         <button type="submit">更新</button>
     </form>

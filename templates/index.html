@@ -14,6 +14,12 @@
         <textarea name="description" required></textarea><br>
         <label for="due_date">期限:</label>
         <input type="date" name="due_date" required><br>
+        <label for="priority">優先度:</label>
+        <select name="priority">
+            <option value="低">低</option>
+            <option value="中">中</option>
+            <option value="高">高</option>
+        </select><br>
         <button type="submit">タスク作成</button>
     </form>
 
@@ -24,6 +30,15 @@
         {% for task in tasks %}
             <li>
                 <strong>{{ task['title'] }}</strong><br>
+                {% set priority_class = task.priority|lower %}
+                {% if priority_class == '高' %}
+                  {% set priority_class = 'high' %}
+                {% elif priority_class == '中' %}
+                  {% set priority_class = 'medium' %}
+                {% elif priority_class == '低' %}
+                  {% set priority_class = 'low' %}
+                {% endif %}
+                優先度:<span class="priority {{ priority_class }}-priority">{{ task.priority }}</span><br>
                 説明: {{ task['description'] }}<br>
                 期限: {{ task['due_date'] }}<br>
                 ステータス: {{ task['status'] }}<br>
