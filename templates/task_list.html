@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>タスク一覧</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h2>タスク一覧</h2>
+
+    {% if tasks %}
+        <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong><br>
+                優先度: <span class="priority {{ task.priority|lower }}-priority">{{ task.priority }}</span><br>
+                説明: {{ task.description }}<br>
+                期限: {{ task.due_date }}<br>
+                ステータス: {{ task.status }}<br>
+                <form action="/edit/{{ loop.index0 }}" method="GET">
+                    <button type="submit">編集</button>
+                </form>
+                <form action="/delete/{{ loop.index0 }}" method="POST">
+                    <button type="submit">削除</button>
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>フィルタリングされたタスクはありません。</p>
+    {% endif %}
+
+</body>
+</html>
